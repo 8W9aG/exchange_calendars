@@ -47,6 +47,8 @@ class Holiday(PandasHoliday):
             end_date=end_date,
             days_of_week=days_of_week,
         )
+        print(super())
+        print(', '.join("%s: %s" % item for item in vars(self).items()))
         self.start_date = start_date
         self.offset = offset
         self.observance = observance
