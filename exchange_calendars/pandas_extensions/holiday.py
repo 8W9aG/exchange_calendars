@@ -47,6 +47,7 @@ class Holiday(PandasHoliday):
             end_date=end_date,
             days_of_week=days_of_week,
         )
+        self.start_date = start_date
         self.offset = offset
         self.observance = observance
         self.tz = tz
