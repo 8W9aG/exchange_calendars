@@ -47,25 +47,22 @@ class Holiday(PandasHoliday):
             end_date=end_date,
             days_of_week=days_of_week,
         )
-        print(super())
-        print(', '.join("%s: %s" % item for item in vars(self).items()))
-        self.start_date = start_date
         self.offset = offset
         self.observance = observance
         self.tz = tz
-        if self.start_date is not None:
+        if hasattr(self, "start_date") and self.start_date is not None:
             if self.tz is None and self.start_date.tz is not None:
                 self.tz = start_date.tz
             if self.start_date.tz is None and self.tz is not None:
                 self.start_date = self.start_date.tz_localize(self.tz)
             assert self.tz == self.start_date.tz
-        if self.end_date is not None:
+        if hasattr(self, "end_date") and self.end_date is not None:
             if self.tz is None and self.end_date.tz is not None:
                 self.tz = end_date.tz
             if self.end_date.tz is None and self.tz is not None:
                 self.end_date = self.end_date.tz_localize(self.tz)
             assert self.tz == self.end_date.tz
-        if self.start_date is not None and self.end_date is not None:
+        if hasattr(self, "start_date") and self.start_date is not None and hasattr(self, "end_date") and self.end_date is not None:
             assert self.start_date.tz == self.end_date.tz
 
     def __repr__(self) -> str:
